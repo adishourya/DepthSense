@@ -1,3 +1,6 @@
+from : Ke Xian1, Chunhua Shen2, Zhiguo Cao1*, Hao Lu1, Yang Xiao1, Ruibo Li1, Zhenbo Luo3
+https://sites.google.com/site/redwebcvpr18/
+
 # Monocular Relative Depth Perception with Web Stereo Data Supervision
 Ke Xian1, Chunhua Shen2, Zhiguo Cao1*, Hao Lu1, Yang Xiao1, Ruibo Li1, Zhenbo Luo3
 1School of Automation, Huazhong University of Science and Technology, China
