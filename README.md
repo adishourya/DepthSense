@@ -9,7 +9,8 @@ Best viewed in github/adishourya/DepthSense
 
 
 ## Methodology
-* This project closely follows the practices from the d2l book
+* This project closely follows the practices of Andrej Karpathy's Micrograd series
+* The util and pytorch board util scripts were inspired from the Dive into Deep Learning
 * notes from the books can be found in notes/ folder
 ```
 @book{zhang2023dive,
