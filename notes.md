@@ -17,3 +17,12 @@ ground-truth ordinal relationship between ik and jk that indicates further
 imbalanced ordinal relations, i.e., the number of equal relation is far less
 than other two relations.
 
+To enable our ConvNet to be trained with imbalanced ordinal relations, an appropriate loss function is needed. In this paper, we design an improved ranking loss L(I, G, z), which can be formulated as follows:
+N
+L(I, G, z) = sigma ωkφ(I, ik, jk, lk, z), (2)
+k=1
+where z is the estimated relative depth map, ωk and φ(I, ik, jk, lk, z) are the weight and loss of the k-th point
+
+pair, respectively. Note that ωk can only be 0 or 1 in our experiments. φ(I, ik, jk, lk, z) takes the form:
+φ = log(1 + exp[(−zik + zjk)lk]), lk ̸= 0, (3) (zik −zjk)2, lk =0.
+We initial all ωk as 1, then the loss can be seen as a rank- ing loss [6]. To avoid the difference of two unequal depth values being too large and ease the problem of imbalanced ordinal relations, we first sort the loss of unequal pairs at each iteration, and then ignore the smallest part by setting corresponding ωk to 0. More specifically, we empirically set the smallest 25% of ωk to 0. Therefore, the ratio of equal relation would be increased so that the problem of imbalanced ordinal relations can be alleviated. In addition, the ConvNet is thus enforced to focus on a set of hard pairs during training.

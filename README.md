@@ -18,20 +18,19 @@ Best viewed in github/adishourya/DepthSense
     author={Zhang, Aston and Lipton, Zachary C. and Li, Mu and Smola, Alexander J.},
     publisher={Cambridge University Press},
     note={\url{https://D2L.ai}},
-    year={2023}
+    year={223}
 }
 ```
 Read Readme of the following folders under notebooks/:
 Week2 :
 Week3 :
 Week4 :
-Week5 :
+Wee5 :
 Week6 :
 
-
-## Some Math to understand the code
-* depth and disparity
-* choosing a loss f(•)
+# Experiments
+    * Online Mini Sampling to calculate ordinal distances
+    * Improved Ranking loss which forces model to learn on hard ordinal pairs to improve generalization
 
 ## Perfomance 
 
