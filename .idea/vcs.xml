@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/notebooks/my_micrograd" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/loss/pytorch-ssim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/notes/my_micrograd" vcs="Git" />
   </component>
 </project>

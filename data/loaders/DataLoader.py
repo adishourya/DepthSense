@@ -58,6 +58,10 @@ class RedWebDataset(Dataset):
             self.monocular_folder+"/"+self.monocular_images[idx])
         heatmap_image = io.imread(
             self.heatmap_folder + "/" + self.heatmap_images[idx])
+        # convert heat image into a 3d tensor before sending it :
+        # heatmap_image = heatmap_image[:,np.newaxis]
+        heatmap_image = np.stack([heatmap_image]*3,axis=-1)
+        # print(monocular_image.shape,heatmap_image.shape)
         sample = {'mono': monocular_image, 'heat': heatmap_image}
 
         if self.transform:
@@ -133,9 +137,10 @@ class ToTensor(object):
         # swap color axis because
         # numpy image: H x W x C
         # torch image: C X H X W
+        # print(mono.shape , heat.shape)
         mono = mono.transpose((2, 0, 1))
+        heat = heat.transpose((2, 0, 1))
 
-        # dont have to do anything for single channel image
 
         return {'mono': torch.from_numpy(mono),
                 'heat': torch.from_numpy(heat)}
