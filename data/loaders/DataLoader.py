@@ -1,11 +1,16 @@
 from __future__ import print_function, division
 import os
 import torch
-from skimage import io, transform
 import numpy as np
 import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms, utils
+from torchvision.utils import make_grid
+from torchvision.io import read_image
+import torchvision.transforms.functional as F
+
+
+plt.rcParams["savefig.bbox"] = 'tight'
 
 
 class RedWebDataset(Dataset):
@@ -53,15 +58,11 @@ class RedWebDataset(Dataset):
     def __getitem__(self, idx):
         if torch.is_tensor(idx):
             idx = idx.tolist()
-
-        monocular_image = io.imread(
+        monocular_image = read_image(
             self.monocular_folder+"/"+self.monocular_images[idx])
-        heatmap_image = io.imread(
+        heatmap_image = read_image(
             self.heatmap_folder + "/" + self.heatmap_images[idx])
-        # convert heat image into a 3d tensor before sending it :
-        # heatmap_image = heatmap_image[:,np.newaxis]
-        heatmap_image = np.stack([heatmap_image]*3,axis=-1)
-        # print(monocular_image.shape,heatmap_image.shape)
+
         sample = {'mono': monocular_image, 'heat': heatmap_image}
 
         if self.transform:
@@ -81,7 +82,7 @@ class Rescale(object):
 
     def __call__(self, sample):
         mono, heat = sample['mono'], sample['heat']
-        h, w = mono.shape[:2]
+        _, h, w = mono.shape
         if isinstance(self.output_size, int):
             if h > w:
                 new_h, new_w = self.output_size * h / w, self.output_size
@@ -91,9 +92,10 @@ class Rescale(object):
             new_h, new_w = self.output_size
 
         new_h, new_w = int(new_h), int(new_w)
+        resize_transform = transforms.Resize((new_h, new_w))
+        mono = resize_transform(mono)
+        heat = resize_transform(heat)
 
-        mono = transform.resize(mono, (new_h, new_w))
-        heat = transform.resize(heat, (new_h, new_w))
 
         return {'mono': mono, 'heat': heat}
 
@@ -114,7 +116,7 @@ class RandomCrop(object):
     def __call__(self, sample):
         mono, heat = sample['mono'], sample['heat']
 
-        h, w = mono.shape[:2]
+        _, h, w = mono.shape
         new_h, new_w = self.output_size
 
         top = np.random.randint(0, h - new_h)
@@ -127,6 +129,7 @@ class RandomCrop(object):
 
 
 # a simple image to tensor class
+# most likely not going to use it now
 class ToTensor(object):
     """Convert ndarrays in sample to Tensors."""
 
@@ -140,7 +143,6 @@ class ToTensor(object):
         # print(mono.shape , heat.shape)
         mono = mono.transpose((2, 0, 1))
         heat = heat.transpose((2, 0, 1))
-
 
         return {'mono': torch.from_numpy(mono),
                 'heat': torch.from_numpy(heat)}
