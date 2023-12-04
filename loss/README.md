@@ -14,7 +14,9 @@
 
 ### Structural Similarity Index Loss (SSL)
 * openly available from scikit image module
-* also a pytorch implementation is here : https://github.com/Po-Hsun-Su/pytorch-ssim
+* also a pytorch implementation is here : https://github.com/Po-Hsun-Su/pytorch-ssim but was deprecated
+* check my pull request here : https://github.com/Po-Hsun-Su/pytorch-ssim/pull/45
+![PullReq](./pull_request_passed.png)
 * calculates a metric that involves similarity between 2 images:
     * envelops luminance , contrast and structure
 * expect predicted depth map to geometrically close to the ground truth depth map
@@ -22,6 +24,7 @@
 from skimage.metrics import structural_similarity as ssim
 ``
 ### Depth Smoothness Loss (DSL)
+![DepthSmoothness](./DepthInverseLoss.png)
 * use cases where smoothness is valued more than accuracy of depth.
 * for an example : a 2d to 3d modeller where feathering should not be an issue
 
