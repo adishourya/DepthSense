@@ -2,3 +2,4 @@
 ./data/ReDWeb_V1/Imgs
 ./data/ReDWeb_V1/RDs
 ./models/redweb_resnet_ff_online_sampling.pt
+./models/model_trained.py
