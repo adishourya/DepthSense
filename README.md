@@ -16,6 +16,7 @@ Best viewed in github/adishourya/DepthSense
 ## Code Navigation :
 Note that there is a code (report) pdf for every experiment , which goes into almost the detail you would need to understand the code
 But the script for the file might slightly defer . Mostly to adjust shape of the tensors to match the requirements of the loss functions
+You can find the whole code report (all reports appended in order of development of DepthSense) here :./CodeReport.pdf .Feel free to read the readme of evey foler to understand the code better.
 
     * Data Loaders :
         * ./data/loaders/data_loader_notebook.pdf: goes over making a simple dataset class with some utility classes like RandomCrop and Rescaling
@@ -26,12 +27,13 @@ But the script for the file might slightly defer . Mostly to adjust shape of the
         * Defintely checkout the Readme inside loss/
         * Each Loss has a notebook and a corresponding pdf which explains the loss calculation
         * ./online_sampling/OnlineSampling.pdf goes over one example of online samping calculation
+        * ./loss/StructureGuide.pdf combines the techniques learnt to make a loss function
 
     * Modelling :
-        * ./models/training_loop.pdf goes over some epochs of how we trained the model
-        * the full log of training epochs can be found in ./models/log.txt
+        * ./models/TrainingLoop.pdf goes over epochs of how we trained the model
 
     * Evaluation and results:
+        * ./models/validation.pdf goes over metrics of how well the model fits our dataset and performs on the hold out set
 
 
 # References
@@ -74,4 +76,39 @@ Video Lectures from Andrej Karpathy Micrograd Series
 ```
 https://karpathy.ai
 https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ
+```
+
+Libraries used :
+* pytorch
+```
+@misc{pytorch,
+title={PyTorch: An open source deep learning platform},
+howpublished={\url{https://pytorch.org}},
+year={2023}
+}
+```
+* Albumentations : for fast image transforms
+```
+@Article{info11020125,
+    AUTHOR = {Buslaev, Alexander and Iglovikov, Vladimir I. and Khvedchenya, Eugene and Parinov, Alex and Druzhinin, Mikhail and Kalinin, Alexandr A.},
+    TITLE = {Albumentations: Fast and Flexible Image Augmentations},
+    JOURNAL = {Information},
+    VOLUME = {11},
+    YEAR = {2020},
+    NUMBER = {2},
+    ARTICLE-NUMBER = {125},
+    URL = {https://www.mdpi.com/2078-2489/11/2/125},
+    ISSN = {2078-2489},
+    DOI = {10.3390/info11020125}
+}
+```
+* Torch geometry : for geometrical lossses
+```
+@inproceedings{eriba2019kornia,
+  author    = {E. Riba, D. Mishkin, D. Ponsa, E. Rublee and G. Bradski},
+  title     = {Kornia: an Open Source Differentiable Computer Vision Library for PyTorch},
+  booktitle = {Winter Conference on Applications of Computer Vision},
+  year      = {2020},
+  url       = {https://arxiv.org/pdf/1910.02190.pdf}
+}
 ```
